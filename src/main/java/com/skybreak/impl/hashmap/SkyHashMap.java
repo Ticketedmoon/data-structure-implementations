@@ -78,7 +78,7 @@ class SkyHashMap<K,V> {
                         bucket = bucket.getNext();
                     }
                 }
-                throw new IllegalStateException("Failed to remove key fro map");
+                throw new IllegalStateException("Failed to remove key from map");
             }
         }
     }
