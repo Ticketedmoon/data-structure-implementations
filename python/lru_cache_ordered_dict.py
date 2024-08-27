@@ -5,7 +5,6 @@ class LRUCache:
     def __init__(self, capacity: int):
         self.capacity = capacity
         self.cache = OrderedDict()
-        self.cache_size = 0
 
     def get(self, key: int) -> int:
         if key not in self.cache:
@@ -14,11 +13,8 @@ class LRUCache:
         return self.cache[key]
 
     def put(self, key: int, value: int) -> None:
-        if key not in self.cache:
-            if self.cache_size == self.capacity:
-                self.cache.popitem(last = False)
-            else:
-                self.cache_size += 1
+        if key not in self.cache and len(self.cache) == self.capacity:
+            self.cache.popitem(last = False)
 
         self.cache[key] = value
         self.cache.move_to_end(key, last = True)
